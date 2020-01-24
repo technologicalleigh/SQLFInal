@@ -1,0 +1,531 @@
+/*Create Tables*/
+CREATE TABLE CUSTOMERS
+(
+	custID		char(50) PRIMARY KEY,
+	firstName	char(50) not null,
+	lastName	char(50) not null,
+	city		char(50) not null,
+	country		char(50) not null,
+	phoneNUm	char(50) not null,
+);
+
+CREATE TABLE ORDERS
+(
+	orderID		int PRIMARY KEY,
+	orderDate	date not null,
+	orderTotal	money not null,
+	custID		char(50) FOREIGN KEY REFERENCES CUSTOMERS(custID)
+);
+
+CREATE TABLE SUPPLIER
+(
+	companyName		char(100) PRIMARY KEY,
+	contactName		char(100) not null,
+	city			char(100) not null,
+	county			char(100) not null,
+	phoneNum		char(50) not null,
+	fax				char(50) null,
+	title			char(100) null
+);
+
+
+CREATE TABLE PRODUCTS
+(
+	productName		char(100) PRIMARY KEY,
+	retailPrice		money not null,
+	salePrice		money not null,
+	packaging		char(100) not null,
+	companyName		char(100) FOREIGN KEY REFERENCES SUPPLIER(companyName),
+	isDiscontinued	int not null
+);
+
+CREATE TABLE ORDERITEMS
+(
+	orderID		int FOREIGN KEY REFERENCES ORDERS(orderID),
+	quantity	int not null,
+	productName	char(100) FOREIGN KEY REFERENCES PRODUCTS(productName),
+	itemID		int PRIMARY KEY
+);
+
+/*Insert Customers*/
+
+INSERT INTO CUSTOMERS VALUES ('paulHenriot', 'Paul', 'Henriot', 'Reims', 'France', '26.47.15.10');
+INSERT INTO CUSTOMERS VALUES ('karinJosephs', 'Karin', 'Josephs', 'Münster', 'Germany', '0251-031259');
+INSERT INTO CUSTOMERS VALUES ('marioPontes', 'Mario', 'Pontes', 'Rio de Janeiro', 'Brazil', '(21) 555-0091');
+INSERT INTO CUSTOMERS VALUES ('marySaveley', 'Mary', 'Saveley', 'Lyon', 'France', '78.32.54.86');
+INSERT INTO CUSTOMERS VALUES ('pascaleCartrain', 'Pascale', 'Cartrain', 'Charleroi', 'Belgium', '(071) 23 67 22 20');
+INSERT INTO CUSTOMERS VALUES ('yangWang', 'Yang', 'Wang', 'Bern', 'Switzerland', '0452-076545');
+INSERT INTO CUSTOMERS VALUES ('michaelHolz', 'Michael', 'Holz', 'Genève', 'Switzerland', '0897-034214');
+INSERT INTO CUSTOMERS VALUES ('paulaParente', 'Paula', 'Parente', 'Resende', 'Brazil', '(14) 555-8122');
+INSERT INTO CUSTOMERS VALUES ('carlosHernández', 'Carlos', 'Hernández', 'San Cristóbal', 'Venezuela', '(5) 555-1340');
+INSERT INTO CUSTOMERS VALUES ('rolandMendel', 'Roland', 'Mendel', 'Graz', 'Austria', '7675-3425');
+INSERT INTO CUSTOMERS VALUES ('franciscoChang', 'Francisco', 'Chang', 'México D.F.', 'Mexico', '(5) 555-3392');
+INSERT INTO CUSTOMERS VALUES ('henriettePfalzheim', 'Henriette', 'Pfalzheim', 'Köln', 'Germany', '0221-0644327');
+INSERT INTO CUSTOMERS VALUES ('bernardoBatista', 'Bernardo', 'Batista', 'Rio de Janeiro', 'Brazil', '(21) 555-4252');
+INSERT INTO CUSTOMERS VALUES ('paulaWilson', 'Paula', 'Wilson', 'Albuquerque', 'USA', '(505) 555-5939');
+INSERT INTO CUSTOMERS VALUES ('mariaLarsson', 'Maria', 'Larsson', 'Bräcke', 'Sweden', '0695-34 67 21');
+INSERT INTO CUSTOMERS VALUES ('frédériqueCiteaux', 'Frédérique', 'Citeaux', 'Strasbourg', 'France', '88.60.15.31');
+INSERT INTO CUSTOMERS VALUES ('pirkkoKoskitalo', 'Pirkko', 'Koskitalo', 'Oulu', 'Finland', '981-443655');
+INSERT INTO CUSTOMERS VALUES ('peterFranken', 'Peter', 'Franken', 'München', 'Germany', '089-0877310');
+INSERT INTO CUSTOMERS VALUES ('manuelPereira', 'Manuel', 'Pereira', 'Caracas', 'Venezuela', '(2) 283-2951');
+INSERT INTO CUSTOMERS VALUES ('karlJablonski', 'Karl', 'Jablonski', 'Seattle', 'USA', '(206) 555-4112');
+INSERT INTO CUSTOMERS VALUES ('artBraunschweiger', 'Art', 'Braunschweiger', 'Lander', 'USA', '(307) 555-4680');
+INSERT INTO CUSTOMERS VALUES ('horstKloss', 'Horst', 'Kloss', 'Cunewalde', 'Germany', '0372-035188');
+INSERT INTO CUSTOMERS VALUES ('giovanniRovelli', 'Giovanni', 'Rovelli', 'Bergamo', 'Italy', '035-640230');
+INSERT INTO CUSTOMERS VALUES ('miguelAngelPaolino', 'Miguel', 'Angel Paolino', 'México D.F.', 'Mexico', '(5) 555-2933');
+INSERT INTO CUSTOMERS VALUES ('alexanderFeuer', 'Alexander', 'Feuer', 'Leipzig', 'Germany', '0342-023176');
+INSERT INTO CUSTOMERS VALUES ('christinaBerglund', 'Christina', 'Berglund', 'Luleå', 'Sweden', '0921-12 34 65');
+INSERT INTO CUSTOMERS VALUES ('renateMessner', 'Renate', 'Messner', 'Frankfurt a.M.', 'Germany', '069-0245984');
+INSERT INTO CUSTOMERS VALUES ('alejandraCamino', 'Alejandra', 'Camino', 'Madrid', 'Spain', '(91) 745 6200');
+INSERT INTO CUSTOMERS VALUES ('carlosGonzález', 'Carlos', 'González', 'Barquisimeto', 'Venezuela', '(9) 331-6954');
+INSERT INTO CUSTOMERS VALUES ('janeteLimeira', 'Janete', 'Limeira', 'Rio de Janeiro', 'Brazil', '(21) 555-3412');
+INSERT INTO CUSTOMERS VALUES ('maurizioMoroni', 'Maurizio', 'Moroni', 'Reggio Emilia', 'Italy', '0522-556721');
+INSERT INTO CUSTOMERS VALUES ('victoriaAshworth', 'Victoria', 'Ashworth', 'London', 'UK', '(171) 555-1212');
+INSERT INTO CUSTOMERS VALUES ('pedroAfonso', 'Pedro', 'Afonso', 'Sao Paulo', 'Brazil', '(11) 555-7647');
+INSERT INTO CUSTOMERS VALUES ('patriciaMcKenna', 'Patricia', 'McKenna', 'Cork', 'Ireland', '2967 542');
+INSERT INTO CUSTOMERS VALUES ('ritaMüller', 'Rita', 'Müller', 'Stuttgart', 'Germany', '0711-020361');
+INSERT INTO CUSTOMERS VALUES ('joséPedroFreyre', 'José', 'Pedro Freyre', 'Sevilla', 'Spain', '(95) 555 82 82');
+INSERT INTO CUSTOMERS VALUES ('renePhillips', 'Rene', 'Phillips', 'Anchorage', 'USA', '(907) 555-7584');
+INSERT INTO CUSTOMERS VALUES ('franWilson', 'Fran', 'Wilson', 'Portland', 'USA', '(503) 555-9573');
+INSERT INTO CUSTOMERS VALUES ('anaTrujillo', 'Ana', 'Trujillo', 'México D.F.', 'Mexico', '(5) 555-4729');
+INSERT INTO CUSTOMERS VALUES ('lizNixon', 'Liz', 'Nixon', 'Portland', 'USA', '(503) 555-3612');
+INSERT INTO CUSTOMERS VALUES ('janineLabrune', 'Janine', 'Labrune', 'Nantes', 'France', '40.67.88.88');
+INSERT INTO CUSTOMERS VALUES ('helenBennett', 'Helen', 'Bennett', 'Cowes', 'UK', '(198) 555-8888');
+INSERT INTO CUSTOMERS VALUES ('guillermoFernández', 'Guillermo', 'Fernández', 'México D.F.', 'Mexico', '(5) 552-3745');
+INSERT INTO CUSTOMERS VALUES ('philipCramer', 'Philip', 'Cramer', 'Brandenburg', 'Germany', '0555-09876');
+INSERT INTO CUSTOMERS VALUES ('josePavarotti', 'Jose', 'Pavarotti', 'Boise', 'USA', '(208) 555-8097');
+INSERT INTO CUSTOMERS VALUES ('martínSommer', 'Martín', 'Sommer', 'Madrid', 'Spain', '(91) 555 22 82');
+INSERT INTO CUSTOMERS VALUES ('linoRodriguez', 'Lino', 'Rodriguez', 'Lisboa', 'Portugal', '(1) 354-2534');
+INSERT INTO CUSTOMERS VALUES ('anabelaDomingues', 'Anabela', 'Domingues', 'Sao Paulo','Brazil','(11) 555-2167');
+
+
+/*Insert Suppliers*/
+INSERT INTO SUPPLIER VALUES ('Cooperativa de Quesos Las Cabras', 'Antonio del Valle Saavedra', 'Oviedo', 'Spain', '(98) 598 76 54', null, null);
+INSERT INTO SUPPLIER VALUES ('Leka Trading', 'Chandra Leka', 'Singapore', 'Singapore', '555-8787', null, null);
+INSERT INTO SUPPLIER VALUES ('Formaggi Fortini s.r.l.', 'Elio Rossi', 'Ravenna', 'Italy', '(0544) 60323', '(0544) 60603', null);
+INSERT INTO SUPPLIER VALUES ('Mayumis', 'Mayumi Ohno', 'Osaka', 'Japan', '(06) 431-7877', null, null);
+INSERT INTO SUPPLIER VALUES ('Gday, Mate', 'Wendy Mackenzie', 'Sydney', 'Australia', '(02) 555-5914', '(02) 555-4873', null);
+INSERT INTO SUPPLIER VALUES ('New England Seafood Cannery', 'Robb Merchant', 'Boston', 'USA', '(617) 555-3267', '(617) 555-3389', null);
+INSERT INTO SUPPLIER VALUES ('New Orleans Cajun Delights', 'Shelley Burke', 'New Orleans', 'USA', '(100) 555-4822', null, null);
+INSERT INTO SUPPLIER VALUES ('PB Knäckebröd AB', 'Lars Peterson', 'Göteborg', 'Sweden', '031-987 65 43', '031-987 65 91', null);
+INSERT INTO SUPPLIER VALUES ('Pasta Buttini s.r.l.', 'Giovanni Giudici', 'Salerno', 'Italy', '(089) 6547665', '(089) 6547667', null);
+INSERT INTO SUPPLIER VALUES ('Specialty Biscuits, Ltd.', 'Peter Wilson', 'Manchester', 'UK', '(161) 555-4448', null, null);
+INSERT INTO SUPPLIER VALUES ('Norske Meierier', 'Beate Vileid', 'Sandvika', 'Norway', '(0)2-953010', null, null);
+INSERT INTO SUPPLIER VALUES ('Gai pâturage', 'Eliane Noz', 'Annecy', 'France', '38.76.98.06', '38.76.98.58', null);
+INSERT INTO SUPPLIER VALUES ('Aux joyeux ecclésiastiques', 'Guylène Nodier', 'Paris', 'France', '(1) 03.83.00.68', '(1) 03.83.00.62', null);
+INSERT INTO SUPPLIER VALUES ('Karkki Oy', 'Anne Heikkonen', 'Lappeenranta', 'Finland', '(953) 10956', null, null);
+INSERT INTO SUPPLIER VALUES ('Refrescos Americanas LTDA', 'Carlos Diaz', 'Sao Paulo', 'Brazil', '(11) 555 4640', null, null);
+INSERT INTO SUPPLIER VALUES ('Ma Maison', 'Jean-Guy Lauzon', 'Montréal', 'Canada', '(514) 555-9022', null, null);
+INSERT INTO SUPPLIER VALUES ('Tokyo Traders', 'Yoshi Nagase', 'Tokyo', 'Japan', '(03) 3555-5011', null, null);
+INSERT INTO SUPPLIER VALUES ('Exotic Liquids', 'Charlotte Cooper', 'London', 'UK', '(171) 555-2222', null, null);
+INSERT INTO SUPPLIER VALUES ('Pavlova, Ltd.', 'Ian Devling', 'Melbourne', 'Australia', '(03) 444-2343', '(03) 444-6588', null);
+INSERT INTO SUPPLIER VALUES ('Svensk Sjöföda AB', 'Michael Björn', 'Stockholm', 'Sweden', '08-123 45 67', null, null);
+INSERT INTO SUPPLIER VALUES ('Plutzer Lebensmittelgroßmärkte AG', 'Martin Bein', 'Frankfurt', 'Germany', '(069) 992755', null, null);
+INSERT INTO SUPPLIER VALUES ('Heli Süßwaren GmbH & Co. KG', 'Petra Winkler', 'Berlin', 'Germany', '(010) 9984510', null, null);
+INSERT INTO SUPPLIER VALUES ('Forêts dérables', 'Chantal Goulet', 'Ste-Hyacinthe', 'Canada', '(514) 555-2955', '(514) 555-2921', null);
+INSERT INTO SUPPLIER VALUES ('Bigfoot Breweries', 'Cheryl Saylor', 'Bend', 'USA', '(503) 555-9931', null, null);
+INSERT INTO SUPPLIER VALUES ('Grandma Kellys Homestead', 'Regina Murphy', 'Ann Arbor', 'USA', '(313) 555-5735', '(313) 555-3349', null);
+INSERT INTO SUPPLIER VALUES ('Nord-Ost-Fisch Handelsgesellschaft mbH', 'Sven Petersen', 'Cuxhaven', 'Germany', '(04721) 8713', '(04721) 8714', null);
+INSERT INTO SUPPLIER VALUES ('Lyngbysild', 'Niels Petersen', 'Lyngby', 'Denmark', '43844108', '43844115', null);
+INSERT INTO SUPPLIER VALUES ('Escargots Nouveaux', 'Marie Delamare', 'Montceau', 'France', '85.57.00.07', null, null);
+
+/*Insert Orders*/
+INSERT INTO ORDERS VALUES (542378, '7/4/2012', 440, 'paulHenriot');
+INSERT INTO ORDERS VALUES (542379, '7/5/2012', 1863.4, 'karinJosephs');
+INSERT INTO ORDERS VALUES (542380, '7/8/2012', 1813, 'marioPontes');
+INSERT INTO ORDERS VALUES (542381, '7/8/2012', 670.8, 'marySaveley');
+INSERT INTO ORDERS VALUES (542382, '7/9/2012', 3730, 'pascaleCartrain');
+INSERT INTO ORDERS VALUES (542383, '7/10/2012', 1444.8, 'marioPontes');
+INSERT INTO ORDERS VALUES (542384, '7/11/2012', 625.2, 'yangWang');
+INSERT INTO ORDERS VALUES (542385, '7/12/2012', 2490.5, 'michaelHolz');
+INSERT INTO ORDERS VALUES (542386, '7/15/2012', 517.8, 'paulaParente');
+INSERT INTO ORDERS VALUES (542387, '7/16/2012', 1119.9, 'carlosHernández');
+INSERT INTO ORDERS VALUES (542388, '7/17/2012', 2018.6, 'rolandMendel');
+INSERT INTO ORDERS VALUES (542389, '7/18/2012', 100.8, 'franciscoChang');
+INSERT INTO ORDERS VALUES (542390, '7/19/2012', 1746.2, 'henriettePfalzheim');
+INSERT INTO ORDERS VALUES (542391, '7/19/2012', 448, 'bernardoBatista');
+INSERT INTO ORDERS VALUES (542392, '7/22/2012', 624.8, 'paulaWilson');
+INSERT INTO ORDERS VALUES (542393, '7/23/2012', 2464.8, 'rolandMendel');
+INSERT INTO ORDERS VALUES (542394, '7/24/2012', 724.5, 'mariaLarsson');
+INSERT INTO ORDERS VALUES (542395, '7/25/2012', 1176, 'frédériqueCiteaux');
+INSERT INTO ORDERS VALUES (542396, '7/26/2012', 364.8, 'pirkkoKoskitalo');
+INSERT INTO ORDERS VALUES (542397, '7/29/2012', 4031, 'peterFranken');
+INSERT INTO ORDERS VALUES (542398, '7/30/2012', 1101.2, 'manuelPereira');
+INSERT INTO ORDERS VALUES (542399, '7/31/2012', 676, 'karlJablonski');
+INSERT INTO ORDERS VALUES (542401, '8/1/2012', 48, 'artBraunschweiger');
+INSERT INTO ORDERS VALUES (542402, '8/2/2012', 1456, 'paulaWilson');
+INSERT INTO ORDERS VALUES (542403, '8/5/2012', 2142.4, 'horstKloss');
+INSERT INTO ORDERS VALUES (542404, '8/6/2012', 538.6, 'paulHenriot');
+INSERT INTO ORDERS VALUES (542405, '8/7/2012', 307.2, 'giovanniRovelli');
+INSERT INTO ORDERS VALUES (542406, '8/8/2012', 420, 'miguelAngelPaolino');
+INSERT INTO ORDERS VALUES (542407, '8/9/2012', 1200.8, 'alexanderFeuer');
+INSERT INTO ORDERS VALUES (542408, '8/12/2012', 1488.8, 'christinaBerglund');
+INSERT INTO ORDERS VALUES (542409, '8/13/2012', 468, 'renateMessner');
+INSERT INTO ORDERS VALUES (542410, '8/14/2012', 613.2, 'christinaBerglund');
+INSERT INTO ORDERS VALUES (542411, '8/14/2012', 86.5, 'alejandraCamino');
+INSERT INTO ORDERS VALUES (542412, '8/15/2012', 155.4, 'alejandraCamino');
+INSERT INTO ORDERS VALUES (542413, '8/16/2012', 1414.8, 'carlosGonzález');
+INSERT INTO ORDERS VALUES (542414, '8/19/2012', 1452, 'renateMessner');
+INSERT INTO ORDERS VALUES (542415, '8/20/2012', 2179.2, 'horstKloss');
+INSERT INTO ORDERS VALUES (542416, '8/21/2012', 3016, 'horstKloss');
+INSERT INTO ORDERS VALUES (542417, '8/22/2012', 924, 'janeteLimeira');
+INSERT INTO ORDERS VALUES (542418, '8/23/2012', 89, 'maurizioMoroni');
+INSERT INTO ORDERS VALUES (542419, '8/26/2012', 479.4, 'victoriaAshworth');
+INSERT INTO ORDERS VALUES (542420, '8/27/2012', 2169, 'pedroAfonso');
+INSERT INTO ORDERS VALUES (542421, '8/27/2012', 552.8, 'bernardoBatista');
+INSERT INTO ORDERS VALUES (542422, '8/28/2012', 1296, 'anabelaDomingues');
+INSERT INTO ORDERS VALUES (542423, '8/29/2012', 848.7, 'miguelAngelPaolino');
+INSERT INTO ORDERS VALUES (542424, '8/30/2012', 1887.6, 'paulaWilson');
+INSERT INTO ORDERS VALUES (542425, '9/2/2012', 121.6, 'paulHenriot');
+INSERT INTO ORDERS VALUES (542426, '9/3/2012', 1050.6, 'carlosGonzález');
+INSERT INTO ORDERS VALUES (542427, '9/4/2012', 1420, 'frédériqueCiteaux');
+INSERT INTO ORDERS VALUES (542428, '9/5/2012', 3127, 'patriciaMcKenna');
+INSERT INTO ORDERS VALUES (542429, '9/6/2012', 349.5, 'janeteLimeira');
+INSERT INTO ORDERS VALUES (542430, '9/9/2012', 608, 'giovanniRovelli');
+INSERT INTO ORDERS VALUES (542431, '9/9/2012', 755, 'ritaMüller');
+INSERT INTO ORDERS VALUES (542432, '9/10/2012', 2708.8, 'pascaleCartrain');
+INSERT INTO ORDERS VALUES (542433, '9/11/2012', 1242, 'joséPedroFreyre');
+INSERT INTO ORDERS VALUES (542434, '9/12/2012', 1242, 'miguelAngelPaolino');
+INSERT INTO ORDERS VALUES (542435, '9/13/2012', 4157, 'renePhillips');
+INSERT INTO ORDERS VALUES (542436, '9/16/2012', 498.5, 'alejandraCamino');
+INSERT INTO ORDERS VALUES (542437, '9/17/2012', 424, 'franWilson');
+INSERT INTO ORDERS VALUES (542438, '9/18/2012', 88.8, 'anaTrujillo');
+INSERT INTO ORDERS VALUES (542439, '9/19/2012', 1762, 'patriciaMcKenna');
+INSERT INTO ORDERS VALUES (542440, '9/20/2012', 336, 'lizNixon');
+INSERT INTO ORDERS VALUES (542441, '9/20/2012', 268.8, 'janineLabrune');
+INSERT INTO ORDERS VALUES (542442, '9/23/2012', 1614.8, 'ritaMüller');
+INSERT INTO ORDERS VALUES (542443, '9/24/2012', 182.4, 'horstKloss');
+INSERT INTO ORDERS VALUES (542444, '9/25/2012', 2327, 'paulaWilson');
+INSERT INTO ORDERS VALUES (542445, '9/26/2012', 516.8, 'helenBennett');
+INSERT INTO ORDERS VALUES (542446, '9/27/2012', 2835, 'paulaWilson');
+INSERT INTO ORDERS VALUES (542447, '9/30/2012', 288, 'franWilson');
+INSERT INTO ORDERS VALUES (542448, '10/1/2012', 240.4, 'helenBennett');
+INSERT INTO ORDERS VALUES (542449, '10/2/2012', 1191.2, 'miguelAngelPaolino');
+INSERT INTO ORDERS VALUES (542450, '10/3/2012', 516, 'pirkkoKoskitalo');
+INSERT INTO ORDERS VALUES (542451, '10/3/2012', 144, 'helenBennett');
+INSERT INTO ORDERS VALUES (542452, '10/4/2012', 112, 'guillermoFernández');
+INSERT INTO ORDERS VALUES (542453, '10/7/2012', 164.4, 'philipCramer');
+INSERT INTO ORDERS VALUES (542454, '10/8/2012', 6155.9, 'josePavarotti');
+INSERT INTO ORDERS VALUES (542455, '10/9/2012', 1497, 'philipCramer');
+INSERT INTO ORDERS VALUES (542456, '10/10/2012', 982, 'martínSommer');
+INSERT INTO ORDERS VALUES (542457, '10/11/2012', 2262.5, 'mariaLarsson');
+INSERT INTO ORDERS VALUES (542458, '10/14/2012', 1168, 'linoRodriguez');
+INSERT INTO ORDERS VALUES (542459, '10/15/2012', 4819.4, 'artBraunschweiger');
+INSERT INTO ORDERS VALUES (542400,'8/1/2012',1376,'pirkkoKoskitalo');
+
+/*Insert PRODUCTS*/
+INSERT INTO PRODUCTS VALUES ('Queso Cabrales', 21, 14, '1 kg pkg.','Cooperativa de Quesos Las Cabras',0);
+INSERT INTO PRODUCTS VALUES ('Singaporean Hokkien Fried Mee', 14, 9.8, '32 - 1 kg pkgs.','Leka Trading',1);
+INSERT INTO PRODUCTS VALUES ('Mozzarella di Giovanni', 34.8, 34.8, '24 - 200 g pkgs.','Formaggi Fortini s.r.l.',0);
+INSERT INTO PRODUCTS VALUES ('Tofu', 23.25, 18.6, '40 - 100 g pkgs.','Mayumis',0);
+INSERT INTO PRODUCTS VALUES ('Manjimup Dried Apples', 53, 42.4, '50 - 300 g pkgs.','Gday, Mate',0);
+INSERT INTO PRODUCTS VALUES ('Jacks New England Clam Chowder', 9.65, 7.7, '50 - 300 g pkgs.','New England Seafood Cannery',0);
+INSERT INTO PRODUCTS VALUES ('Louisiana Fiery Hot Pepper Sauce', 21.05, 16.8, '32 - 8 oz bottles','New Orleans Cajun Delights',0);
+INSERT INTO PRODUCTS VALUES ('Gustafs Knäckebröd', 21, 16.8, '24 - 500 g pkgs.','PB Knäckebröd AB',0);
+INSERT INTO PRODUCTS VALUES ('Ravioli Angelo', 19.5, 15.6, '24 - 250 g pkgs.','Pasta Buttini s.r.l.',0);
+INSERT INTO PRODUCTS VALUES ('Sir Rodneys Marmalade', 81, 64.8, '30 gift boxes','Specialty Biscuits, Ltd.',0);
+INSERT INTO PRODUCTS VALUES ('Geitost', 2.5, 2, '500 g','Norske Meierier',0);
+INSERT INTO PRODUCTS VALUES ('Camembert Pierrot', 34, 27.20, '15 - 300 g rounds','Gai pâturage',0);
+INSERT INTO PRODUCTS VALUES ('Gorgonzola Telino', 12.50, 10, '12 - 100 g pkgs','Formaggi Fortini s.r.l.',0);
+INSERT INTO PRODUCTS VALUES ('Chartreuse verte', 18, 14.4, '750 cc per bottle','Aux joyeux ecclésiastiques',0);
+INSERT INTO PRODUCTS VALUES ('Maxilaku', 20, 16, '24 - 50 g pkgs.','Karkki Oy',0);
+INSERT INTO PRODUCTS VALUES ('Guaraná Fantástica', 4.50, 3.6, '12 - 355 ml cans','Refrescos Americanas LTDA',1);
+INSERT INTO PRODUCTS VALUES ('Pâté chinois', 24, 19.2, '24 boxes x 2 pies','Ma Maison',0);
+INSERT INTO PRODUCTS VALUES ('Longlife Tofu', 10, 8, '5 kg pkg.','Tokyo Traders',0);
+INSERT INTO PRODUCTS VALUES ('Chang', 19, 15.2, '24 - 12 oz bottles','Exotic Liquids',0);
+INSERT INTO PRODUCTS VALUES ('Pavlova', 17.45, 13.9, '32 - 500 g boxes','Pavlova, Ltd.',0);
+INSERT INTO PRODUCTS VALUES ('Inlagd Sill', 19, 15.2, '24 - 250 g  jars','Svensk Sjöföda AB',0);
+INSERT INTO PRODUCTS VALUES ('Raclette Courdavault', 55, 44, '5 kg pkg.','Gai pâturage',0);
+INSERT INTO PRODUCTS VALUES ('Perth Pasties', 32.8, 26.2, '48 pieces','Gday, Mate',1);
+INSERT INTO PRODUCTS VALUES ('Original Frankfurter grüne Soße', 13, 10.4, '12 boxes','Plutzer Lebensmittelgroßmärkte AG',0);
+INSERT INTO PRODUCTS VALUES ('Schoggi Schokolade', 43.9, 35.1, '100 - 100 g pieces','Heli Süßwaren GmbH & Co. KG',0);
+INSERT INTO PRODUCTS VALUES ('Chef Antons Gumbo Mix', 21.35, 17, '36 boxes','New Orleans Cajun Delights',1);
+INSERT INTO PRODUCTS VALUES ('Mascarpone Fabioli', 32, 25.6, '24 - 200 g pkgs.','Formaggi Fortini s.r.l.',0);
+INSERT INTO PRODUCTS VALUES ('Sir Rodneys Scones', 10, 8, '24 pkgs. x 4 pieces','Specialty Biscuits, Ltd.',0);
+INSERT INTO PRODUCTS VALUES ('Gravad lax', 26, 20.8, '12 - 500 g pkgs.','Svensk Sjöföda AB',0);
+INSERT INTO PRODUCTS VALUES ('Tarte au sucre', 49.3, 39.4, '48 pies','Forêts dérables',0);
+INSERT INTO PRODUCTS VALUES ('Outback Lager', 15, 12, '24 - 355 ml bottles','Pavlova, Ltd.',0);
+INSERT INTO PRODUCTS VALUES ('Steeleye Stout', 18, 14.4, '24 - 12 oz bottles', 'Bigfoot Breweries',0);
+INSERT INTO PRODUCTS VALUES ('Uncle Bobs Organic Dried Pears', 30, 24, '12 - 1 lb pkgs.', 'Grandma Kellys Homestead',0);
+INSERT INTO PRODUCTS VALUES ('Gnocchi di nonna Alice', 38, 30.4, '24 - 250 g pkgs.', 'Pasta Buttini s.r.l.',0);
+INSERT INTO PRODUCTS VALUES ('Nord-Ost Matjeshering', 25.89, 20.7, '10 - 200 g glasses', 'Nord-Ost-Fisch Handelsgesellschaft mbH',0);
+INSERT INTO PRODUCTS VALUES ('Alice Mutton', 39, 31.2, '20 - 1 kg tins', 'Pavlova, Ltd.',1);
+INSERT INTO PRODUCTS VALUES ('Queso Manchego La Pastora', 38.0, 30.4, '10 - 500 g pkgs.', 'Cooperativa de Quesos Las Cabras',0);
+INSERT INTO PRODUCTS VALUES ('Boston Crab Meat', 18.4, 14.7, '24 - 4 oz tins', 'New England Seafood Cannery',0);
+INSERT INTO PRODUCTS VALUES ('Lakkalikööri', 18, 14.4, '500 ml', 'Karkki Oy',0);
+INSERT INTO PRODUCTS VALUES ('Thüringer Rostbratwurst', 123.79, 99, '50 bags x 30 sausgs.', 'Plutzer Lebensmittelgroßmärkte AG',1);
+INSERT INTO PRODUCTS VALUES ('Ipoh Coffee', 46, 36.8, '16 - 500 g tins', 'Leka Trading',0);
+INSERT INTO PRODUCTS VALUES ('Ikura', 31, 24.8, '12 - 200 ml jars', 'Tokyo Traders',0);
+INSERT INTO PRODUCTS VALUES ('Flotemysost', 21.5, 17.2, '10 - 500 g pkgs.', 'Norske Meierier',0);
+INSERT INTO PRODUCTS VALUES ('Konbu', 6, 4.8, '2 kg box', 'Mayumis',0);
+INSERT INTO PRODUCTS VALUES ('Rössle Sauerkraut', 45.60, 36.4, '25 - 825 g cans', 'Plutzer Lebensmittelgroßmärkte AG',1);
+INSERT INTO PRODUCTS VALUES ('Gula Malacca', 19.45, 15.5, '20 - 2 kg bags', 'Leka Trading',0);
+INSERT INTO PRODUCTS VALUES ('Vegie-spread', 43.9, 35.1, '15 - 625 g jars', 'Pavlova, Ltd.',0);
+INSERT INTO PRODUCTS VALUES ('Röd Kaviar', 15, 12, '24 - 150 g jars', 'Svensk Sjöföda AB',0);
+INSERT INTO PRODUCTS VALUES ('Teatime Chocolate Biscuits', 9.2, 7.3, '10 boxes x 12 pieces', 'Specialty Biscuits, Ltd.',0);
+INSERT INTO PRODUCTS VALUES ('Genen Shouyu', 15.5, 12.4, '24 - 250 ml bottles', 'Mayumis',0);
+INSERT INTO PRODUCTS VALUES ('Laughing Lumberjack Lager', 14, 11.2, '24 - 12 oz bottles', 'Bigfoot Breweries',0);
+INSERT INTO PRODUCTS VALUES ('Chai', 18, 14.4, '10 boxes x 20 bags', 'Exotic Liquids',0);
+INSERT INTO PRODUCTS VALUES ('Sasquatch Ale', 14, 11.2, '24 - 12 oz bottles', 'Bigfoot Breweries',0);
+INSERT INTO PRODUCTS VALUES ('Spegesild', 12, 9.6, '4 - 450 g glasses', 'Lyngbysild',0);
+INSERT INTO PRODUCTS VALUES ('Tourtière', 7.45, 5.9, '16 pies', 'Ma Maison',0);
+INSERT INTO PRODUCTS VALUES ('Scottish Longbreads', 12.5, 10, '10 boxes x 8 pieces', 'Specialty Biscuits, Ltd.',0);
+INSERT INTO PRODUCTS VALUES ('Aniseed Syrup', 10, 8, '12 - 550 ml bottles', 'Exotic Liquids',0);
+INSERT INTO PRODUCTS VALUES ('Wimmers gute Semmelknödel', 33.25, 26.6, '20 bags x 4 pieces', 'Plutzer Lebensmittelgroßmärkte AG',0);
+INSERT INTO PRODUCTS VALUES ('Carnarvon Tigers', 62.5, 50, '16 kg pkg.', 'Pavlova, Ltd.',0);
+INSERT INTO PRODUCTS VALUES ('Rhönbräu Klosterbier', 7.75, 6.2, '24 - 0.5 l bottles', 'Plutzer Lebensmittelgroßmärkte AG',0);
+INSERT INTO PRODUCTS VALUES ('Gudbrandsdalsost', 36, 28.8, '10 kg pkg.', 'Norske Meierier',0);
+INSERT INTO PRODUCTS VALUES ('Chef Antons Cajun Seasoning', 22, 17.6, '48 - 6 oz jars', 'New Orleans Cajun Delights',0);
+INSERT INTO PRODUCTS VALUES ('Grandmas Boysenberry Spread', 25, 20, '12 - 8 oz jars', 'Grandma Kellys Homestead',0);
+INSERT INTO PRODUCTS VALUES ('Escargots de Bourgogne', 13.25, 10.60, '24 pieces', 'Escargots Nouveaux',0);
+INSERT INTO PRODUCTS VALUES ('Filo Mix', 7, 5.60, '16 - 2 kg boxes', 'Gday, Mate',0);
+INSERT INTO PRODUCTS VALUES ('NuNuCa Nuß-Nougat-Creme', 14, 11.20, '20 - 450 g glasses', 'Heli Süßwaren GmbH & Co. KG',0);
+INSERT INTO PRODUCTS VALUES ('Côte de Blaye', 263.5, 210.8, '12 - 75 cl bottles', 'Aux joyeux ecclésiastiques',0);
+INSERT INTO PRODUCTS VALUES ('Louisiana Hot Spiced Okra', 17,13.6,'24 - 8 oz jars','New Orleans Cajun Delights',0);
+
+/*Insert Order Items*/
+INSERT INTO ORDERITEMS VALUES (542378,12,'Queso Cabrales',1);
+INSERT INTO ORDERITEMS VALUES (542378,10,'Singaporean Hokkien Fried Mee',2);
+INSERT INTO ORDERITEMS VALUES (542378,5,'Mozzarella di Giovanni',3);
+INSERT INTO ORDERITEMS VALUES (542379,9,'Tofu',4);
+INSERT INTO ORDERITEMS VALUES (542379,40,'Manjimup Dried Apples',5);
+INSERT INTO ORDERITEMS VALUES (542380,10,'Jacks New England Clam Chowder',6);
+INSERT INTO ORDERITEMS VALUES (542380,35,'Manjimup Dried Apples',7);
+INSERT INTO ORDERITEMS VALUES (542380,15,'Louisiana Fiery Hot Pepper Sauce',8);
+INSERT INTO ORDERITEMS VALUES (542381,6,'Gustafs Knäckebröd',9);
+INSERT INTO ORDERITEMS VALUES (542381,15,'Ravioli Angelo',10);
+INSERT INTO ORDERITEMS VALUES (542381,20,'Louisiana Fiery Hot Pepper Sauce',11);
+INSERT INTO ORDERITEMS VALUES (542382,40,'Sir Rodneys Marmalade',12);
+INSERT INTO ORDERITEMS VALUES (542382,25,'Geitost',13);
+INSERT INTO ORDERITEMS VALUES (542382,40,'Camembert Pierrot',14);
+INSERT INTO ORDERITEMS VALUES (542383,20,'Gorgonzola Telino',15);
+INSERT INTO ORDERITEMS VALUES (542383,42,'Chartreuse verte',16);
+INSERT INTO ORDERITEMS VALUES (542383,40,'Maxilaku',17);
+INSERT INTO ORDERITEMS VALUES (542384,15,'Guaraná Fantástica',18);
+INSERT INTO ORDERITEMS VALUES (542384,21,'Pâté chinois',19);
+INSERT INTO ORDERITEMS VALUES (542384,21,'Longlife Tofu',20);
+INSERT INTO ORDERITEMS VALUES (542385,20,'Chang',21);
+INSERT INTO ORDERITEMS VALUES (542385,35,'Pavlova',22);
+INSERT INTO ORDERITEMS VALUES (542385,25,'Inlagd Sill',23);
+INSERT INTO ORDERITEMS VALUES (542385,30,'Raclette Courdavault',24);
+INSERT INTO ORDERITEMS VALUES (542386,15,'Perth Pasties',25);
+INSERT INTO ORDERITEMS VALUES (542386,12,'Original Frankfurter grüne Soße',26);
+INSERT INTO ORDERITEMS VALUES (542387,25,'Schoggi Schokolade',27);
+INSERT INTO ORDERITEMS VALUES (542387,6,'Chartreuse verte',28);
+INSERT INTO ORDERITEMS VALUES (542387,15,'Original Frankfurter grüne Soße',29);
+INSERT INTO ORDERITEMS VALUES (542388,50,'Chang',30);
+INSERT INTO ORDERITEMS VALUES (542388,65,'Chef Antons Gumbo Mix',31);
+INSERT INTO ORDERITEMS VALUES (542388,6,'Mascarpone Fabioli',32);
+INSERT INTO ORDERITEMS VALUES (542389,10,'Sir Rodneys Scones',33);
+INSERT INTO ORDERITEMS VALUES (542389,1,'Gravad lax',34);
+INSERT INTO ORDERITEMS VALUES (542390,16,'Jacks New England Clam Chowder',223);
+INSERT INTO ORDERITEMS VALUES (542390,50,'Ravioli Angelo',35);
+INSERT INTO ORDERITEMS VALUES (542390,15,'Tarte au sucre',36);
+INSERT INTO ORDERITEMS VALUES (542390,21,'Outback Lager',37);
+INSERT INTO ORDERITEMS VALUES (542391,20,'Sir Rodneys Scones',38);
+INSERT INTO ORDERITEMS VALUES (542391,20,'Steeleye Stout',39);
+INSERT INTO ORDERITEMS VALUES (542392,12,'Chef Antons Gumbo Mix',40);
+INSERT INTO ORDERITEMS VALUES (542392,15,'Uncle Bobs Organic Dried Pears',41);
+INSERT INTO ORDERITEMS VALUES (542392,2,'Gnocchi di nonna Alice',224);
+INSERT INTO ORDERITEMS VALUES (542393,60,'Pavlova',42);
+INSERT INTO ORDERITEMS VALUES (542393,28,'Guaraná Fantástica',43);
+INSERT INTO ORDERITEMS VALUES (542393,60,'Nord-Ost Matjeshering',44);
+INSERT INTO ORDERITEMS VALUES (542393,36,'Longlife Tofu',45);
+INSERT INTO ORDERITEMS VALUES (542394,35,'Chang',46);
+INSERT INTO ORDERITEMS VALUES (542394,25,'Jacks New England Clam Chowder',47);
+INSERT INTO ORDERITEMS VALUES (542395,30,'Alice Mutton',48);
+INSERT INTO ORDERITEMS VALUES (542395,20,'Outback Lager',49);
+INSERT INTO ORDERITEMS VALUES (542396,12,'Queso Manchego La Pastora',50);
+INSERT INTO ORDERITEMS VALUES (542397,50,'Boston Crab Meat',51);
+INSERT INTO ORDERITEMS VALUES (542397,70,'Raclette Courdavault',52);
+INSERT INTO ORDERITEMS VALUES (542397,15,'Lakkalikööri',53);
+INSERT INTO ORDERITEMS VALUES (542398,10,'Thüringer Rostbratwurst',54);
+INSERT INTO ORDERITEMS VALUES (542398,4,'Mozzarella di Giovanni',55);
+INSERT INTO ORDERITEMS VALUES (542399,60,'Geitost',56);
+INSERT INTO ORDERITEMS VALUES (542399,20,'Mozzarella di Giovanni',57);
+INSERT INTO ORDERITEMS VALUES (542400,30,'Inlagd Sill',58);
+INSERT INTO ORDERITEMS VALUES (542400,25,'Ipoh Coffee',59);
+INSERT INTO ORDERITEMS VALUES (542401,24,'Geitost',60);
+INSERT INTO ORDERITEMS VALUES (542402,6,'Sir Rodneys Marmalade',61);
+INSERT INTO ORDERITEMS VALUES (542402,40,'Gorgonzola Telino',62);
+INSERT INTO ORDERITEMS VALUES (542402,24,'Mozzarella di Giovanni',63);
+INSERT INTO ORDERITEMS VALUES (542403,24,'Ikura',64);
+INSERT INTO ORDERITEMS VALUES (542403,15,'Gorgonzola Telino',65);
+INSERT INTO ORDERITEMS VALUES (542403,20,'Geitost',66);
+INSERT INTO ORDERITEMS VALUES (542403,60,'Boston Crab Meat',67);
+INSERT INTO ORDERITEMS VALUES (542403,33,'Lakkalikööri',68);
+INSERT INTO ORDERITEMS VALUES (542404,20,'Flotemysost',69);
+INSERT INTO ORDERITEMS VALUES (542404,7,'Mozzarella di Giovanni',70);
+INSERT INTO ORDERITEMS VALUES (542405,12,'Guaraná Fantástica',71);
+INSERT INTO ORDERITEMS VALUES (542405,6,'Raclette Courdavault',72);
+INSERT INTO ORDERITEMS VALUES (542406,15,'Ikura',73);
+INSERT INTO ORDERITEMS VALUES (542406,10,'Konbu',74);
+INSERT INTO ORDERITEMS VALUES (542407,20,'Rössle Sauerkraut',75);
+INSERT INTO ORDERITEMS VALUES (542407,12,'Tarte au sucre',76);
+INSERT INTO ORDERITEMS VALUES (542408,16,'Gula Malacca',78);
+INSERT INTO ORDERITEMS VALUES (542408,15,'Raclette Courdavault',79);
+INSERT INTO ORDERITEMS VALUES (542408,8,'Vegie-spread',80);
+INSERT INTO ORDERITEMS VALUES (542408,25,'Röd Kaviar',81);
+INSERT INTO ORDERITEMS VALUES (542409,15,'Alice Mutton',82);
+INSERT INTO ORDERITEMS VALUES (542410,12,'Guaraná Fantástica',83);
+INSERT INTO ORDERITEMS VALUES (542410,20,'Pâté chinois',84);
+INSERT INTO ORDERITEMS VALUES (542410,30,'Rhönbräu Klosterbier',85);
+INSERT INTO ORDERITEMS VALUES (542411,1,'Teatime Chocolate Biscuits',86);
+INSERT INTO ORDERITEMS VALUES (542411,6,'Guaraná Fantástica',87);
+INSERT INTO ORDERITEMS VALUES (542411,4,'Steeleye Stout',88);
+INSERT INTO ORDERITEMS VALUES (542412,6,'Nord-Ost Matjeshering',89);
+INSERT INTO ORDERITEMS VALUES (542412,2,'Ravioli Angelo',90);
+INSERT INTO ORDERITEMS VALUES (542413,20,'Genen Shouyu',91);
+INSERT INTO ORDERITEMS VALUES (542413,18,'Teatime Chocolate Biscuits',92);
+INSERT INTO ORDERITEMS VALUES (542413,35,'Camembert Pierrot',93);
+INSERT INTO ORDERITEMS VALUES (542413,3,'Mozzarella di Giovanni',94);
+INSERT INTO ORDERITEMS VALUES (542414,15,'Schoggi Schokolade',95);
+INSERT INTO ORDERITEMS VALUES (542414,21,'Gula Malacca',96);
+INSERT INTO ORDERITEMS VALUES (542414,20,'Camembert Pierrot',97);
+INSERT INTO ORDERITEMS VALUES (542414,5,'Laughing Lumberjack Lager',98);
+INSERT INTO ORDERITEMS VALUES (542415,40,'Boston Crab Meat',99);
+INSERT INTO ORDERITEMS VALUES (542415,36,'Perth Pasties',100);
+INSERT INTO ORDERITEMS VALUES (542416,100,'Steeleye Stout',101);
+INSERT INTO ORDERITEMS VALUES (542416,40,'Tarte au sucre',102);
+INSERT INTO ORDERITEMS VALUES (542417,40,'Pavlova',103);
+INSERT INTO ORDERITEMS VALUES (542417,20,'Sasquatch Ale',104);
+INSERT INTO ORDERITEMS VALUES (542417,15,'Spegesild',105);
+INSERT INTO ORDERITEMS VALUES (542418,10,'Tourtière',106);
+INSERT INTO ORDERITEMS VALUES (542418,3,'Scottish Longbreads',107);
+INSERT INTO ORDERITEMS VALUES (542419,30,'Aniseed Syrup',108);
+INSERT INTO ORDERITEMS VALUES (542419,9,'Wimmers gute Semmelknödel',109);
+INSERT INTO ORDERITEMS VALUES (542420,20,'Chef Antons Gumbo Mix',110);
+INSERT INTO ORDERITEMS VALUES (542420,15,'Thüringer Rostbratwurst',111);
+INSERT INTO ORDERITEMS VALUES (542420,15,'Maxilaku',112);
+INSERT INTO ORDERITEMS VALUES (542420,10,'Original Frankfurter grüne Soße',113);
+INSERT INTO ORDERITEMS VALUES (542421,20,'Konbu',114);
+INSERT INTO ORDERITEMS VALUES (542421,24,'Gula Malacca',115);
+INSERT INTO ORDERITEMS VALUES (542421,2,'Manjimup Dried Apples',116);
+INSERT INTO ORDERITEMS VALUES (542422,20,'Sir Rodneys Marmalade',117);
+INSERT INTO ORDERITEMS VALUES (542423,12,'Carnarvon Tigers',118);
+INSERT INTO ORDERITEMS VALUES (542423,10,'Guaraná Fantástica',119);
+INSERT INTO ORDERITEMS VALUES (542423,5,'Vegie-spread',120);
+INSERT INTO ORDERITEMS VALUES (542423,6,'Rhönbräu Klosterbier',121);
+INSERT INTO ORDERITEMS VALUES (542424,18,'Chai',122);
+INSERT INTO ORDERITEMS VALUES (542424,15,'Alice Mutton',123);
+INSERT INTO ORDERITEMS VALUES (542424,15,'Ipoh Coffee',124);
+INSERT INTO ORDERITEMS VALUES (542424,21,'Camembert Pierrot',125);
+INSERT INTO ORDERITEMS VALUES (542424,6,'Rhönbräu Klosterbier',126);
+INSERT INTO ORDERITEMS VALUES (542425,4,'Gnocchi di nonna Alice',127);
+INSERT INTO ORDERITEMS VALUES (542426,12,'Queso Cabrales',128);
+INSERT INTO ORDERITEMS VALUES (542426,30,'Pavlova',129);
+INSERT INTO ORDERITEMS VALUES (542426,15,'Gudbrandsdalsost',130);
+INSERT INTO ORDERITEMS VALUES (542427,60,'Chartreuse verte',131);
+INSERT INTO ORDERITEMS VALUES (542427,20,'Mozzarella di Giovanni',132);
+INSERT INTO ORDERITEMS VALUES (542428,40,'Chang',133);
+INSERT INTO ORDERITEMS VALUES (542428,40,'Inlagd Sill',134);
+INSERT INTO ORDERITEMS VALUES (542428,30,'Raclette Courdavault',136);
+INSERT INTO ORDERITEMS VALUES (542428,15,'Tarte au sucre',137);
+INSERT INTO ORDERITEMS VALUES (542429,15,'Teatime Chocolate Biscuits',138);
+INSERT INTO ORDERITEMS VALUES (542429,20,'Outback Lager',139);
+INSERT INTO ORDERITEMS VALUES (542430,30,'Louisiana Hot Spiced Okra',140);
+INSERT INTO ORDERITEMS VALUES (542430,20,'Scottish Longbreads',141);
+INSERT INTO ORDERITEMS VALUES (542431,10,'Boston Crab Meat',142);
+INSERT INTO ORDERITEMS VALUES (542431,20,'Gnocchi di nonna Alice',143);
+INSERT INTO ORDERITEMS VALUES (542432,40,'Alice Mutton',144);
+INSERT INTO ORDERITEMS VALUES (542432,28,'Rössle Sauerkraut',145);
+INSERT INTO ORDERITEMS VALUES (542432,12,'Ipoh Coffee',146);
+INSERT INTO ORDERITEMS VALUES (542433,40,'Boston Crab Meat',147);
+INSERT INTO ORDERITEMS VALUES (542433,30,'Louisiana Fiery Hot Pepper Sauce',148);
+INSERT INTO ORDERITEMS VALUES (542433,15,'Scottish Longbreads',149);
+INSERT INTO ORDERITEMS VALUES (542434,30,'Maxilaku',150);
+INSERT INTO ORDERITEMS VALUES (542434,10,'Raclette Courdavault',151);
+INSERT INTO ORDERITEMS VALUES (542434,2,'Flotemysost',153);
+INSERT INTO ORDERITEMS VALUES (542435,25,'Carnarvon Tigers',154);
+INSERT INTO ORDERITEMS VALUES (542435,25,'Thüringer Rostbratwurst',155);
+INSERT INTO ORDERITEMS VALUES (542435,30,'Chartreuse verte',156);
+INSERT INTO ORDERITEMS VALUES (542436,10,'Nord-Ost Matjeshering',157);
+INSERT INTO ORDERITEMS VALUES (542436,10,'Perth Pasties',158);
+INSERT INTO ORDERITEMS VALUES (542436,5,'Tourtière',159);
+INSERT INTO ORDERITEMS VALUES (542437,10,'Tarte au sucre',160);
+INSERT INTO ORDERITEMS VALUES (542437,3,'Scottish Longbreads',161);
+INSERT INTO ORDERITEMS VALUES (542438,1,'Gudbrandsdalsost',162);
+INSERT INTO ORDERITEMS VALUES (542438,5,'Outback Lager',163);
+INSERT INTO ORDERITEMS VALUES (542439,20,'Chef Antons Cajun Seasoning',164);
+INSERT INTO ORDERITEMS VALUES (542439,30,'Grandmas Boysenberry Spread',165);
+INSERT INTO ORDERITEMS VALUES (542439,2,'Singaporean Hokkien Fried Mee',166);
+INSERT INTO ORDERITEMS VALUES (542439,20,'Ipoh Coffee',167);
+INSERT INTO ORDERITEMS VALUES (542439,3,'Flotemysost',168);
+INSERT INTO ORDERITEMS VALUES (542440,10,'Pavlova',169);
+INSERT INTO ORDERITEMS VALUES (542440,5,'Tarte au sucre',170);
+INSERT INTO ORDERITEMS VALUES (542441,6,'Singaporean Hokkien Fried Mee',171);
+INSERT INTO ORDERITEMS VALUES (542441,7,'Gudbrandsdalsost',172);
+INSERT INTO ORDERITEMS VALUES (542442,4,'Rössle Sauerkraut',173);
+INSERT INTO ORDERITEMS VALUES (542442,24,'Ipoh Coffee',174);
+INSERT INTO ORDERITEMS VALUES (542442,20,'Perth Pasties',175);
+INSERT INTO ORDERITEMS VALUES (542442,10,'Rhönbräu Klosterbier',178);
+INSERT INTO ORDERITEMS VALUES (542443,12,'Inlagd Sill',179);
+INSERT INTO ORDERITEMS VALUES (542444,40,'Mascarpone Fabioli',180);
+INSERT INTO ORDERITEMS VALUES (542444,30,'Escargots de Bourgogne',181);
+INSERT INTO ORDERITEMS VALUES (542444,25,'Tarte au sucre',182);
+INSERT INTO ORDERITEMS VALUES (542445,14,'Sasquatch Ale',183);
+INSERT INTO ORDERITEMS VALUES (542445,30,'Outback Lager',184);
+INSERT INTO ORDERITEMS VALUES (542446,10,'Jacks New England Clam Chowder',185);
+INSERT INTO ORDERITEMS VALUES (542446,70,'Tarte au sucre',186);
+INSERT INTO ORDERITEMS VALUES (542447,20,'Chai',187);
+INSERT INTO ORDERITEMS VALUES (542448,20,'Jacks New England Clam Chowder',188);
+INSERT INTO ORDERITEMS VALUES (542448,6,'Lakkalikööri',189);
+INSERT INTO ORDERITEMS VALUES (542449,8,'Alice Mutton',190);
+INSERT INTO ORDERITEMS VALUES (542449,14,'Rössle Sauerkraut',191);
+INSERT INTO ORDERITEMS VALUES (542449,30,'Lakkalikööri',192);
+INSERT INTO ORDERITEMS VALUES (542450,30,'Flotemysost',193);
+INSERT INTO ORDERITEMS VALUES (542451,10,'Steeleye Stout',194);
+INSERT INTO ORDERITEMS VALUES (542452,20,'Filo Mix',195);
+INSERT INTO ORDERITEMS VALUES (542453,5,'Genen Shouyu',196);
+INSERT INTO ORDERITEMS VALUES (542453,4,'NuNuCa Nuß-Nougat-Creme',197);
+INSERT INTO ORDERITEMS VALUES (542453,4,'Chartreuse verte',198);
+INSERT INTO ORDERITEMS VALUES (542454,21,'Pavlova',199);
+INSERT INTO ORDERITEMS VALUES (542454,70,'Steeleye Stout',200);
+INSERT INTO ORDERITEMS VALUES (542454,30,'Spegesild',201);
+INSERT INTO ORDERITEMS VALUES (542454,40,'Raclette Courdavault',202);
+INSERT INTO ORDERITEMS VALUES (542454,80,'Vegie-spread',203);
+INSERT INTO ORDERITEMS VALUES (542455,6,'Grandmas Boysenberry Spread',204);
+INSERT INTO ORDERITEMS VALUES (542455,12,'Konbu',205);
+INSERT INTO ORDERITEMS VALUES (542455,9,'Tofu',206);
+INSERT INTO ORDERITEMS VALUES (542455,4,'Gorgonzola Telino',207);
+INSERT INTO ORDERITEMS VALUES (542455,40,'Mozzarella di Giovanni',208);
+INSERT INTO ORDERITEMS VALUES (542456,24,'Chef Antons Cajun Seasoning',209);
+INSERT INTO ORDERITEMS VALUES (542456,16,'Ravioli Angelo',210);
+INSERT INTO ORDERITEMS VALUES (542456,50,'Rhönbräu Klosterbier',211);
+INSERT INTO ORDERITEMS VALUES (542457,25,'Chang',212);
+INSERT INTO ORDERITEMS VALUES (542457,50,'Queso Cabrales',213);
+INSERT INTO ORDERITEMS VALUES (542457,35,'Nord-Ost Matjeshering',214);
+INSERT INTO ORDERITEMS VALUES (542457,30,'Escargots de Bourgogne',215);
+INSERT INTO ORDERITEMS VALUES (542458,9,'Raclette Courdavault',216);
+INSERT INTO ORDERITEMS VALUES (542458,40,'Louisiana Fiery Hot Pepper Sauce',217);
+INSERT INTO ORDERITEMS VALUES (542458,10,'Scottish Longbreads',218);
+INSERT INTO ORDERITEMS VALUES (542459,10,'Teatime Chocolate Biscuits',219);
+INSERT INTO ORDERITEMS VALUES (542459,8,'Nord-Ost Matjeshering',220);
+INSERT INTO ORDERITEMS VALUES (542459,20,'Côte de Blaye',221);
+INSERT INTO ORDERITEMS VALUES (542459,12,'Gnocchi di nonna Alice',222);
+
+
+/*Queries*/
+SELECT companyName FROM SUPPLIER
+WHERE fax is NULL;
+
+SELECT productName
+FROM PRODUCTS
+LEFT JOIN SUPPLIER
+on PRODUCTS.companyName=SUPPLIER.companyName
+WHERE SUPPLIER.fax is NULL AND PRODUCTS.retailPrice>40.00;
+
+SELECT ORDERS.orderID, ORDERS.orderDate, CUSTOMERS.firstName as customerFirstName, CUSTOMERS.lastName as customerLastName, PRODUCTS.productName, ORDERITEMS.quantity, ORDERITEMS.quantity*PRODUCTS.salePrice as pricePaid
+from ORDERS
+JOIN CUSTOMERS
+on ORDERS.custID=CUSTOMERS.custID
+JOIN ORDERITEMS
+on ORDERS.orderID=ORDERITEMS.orderID
+JOIN PRODUCTS
+on ORDERITEMS.productName=PRODUCTS.productName
+Where orderTotal>4000.00;
+
+SELECT firstName, lastName from CUSTOMERS
+JOIN ORDERS
+on CUSTOMERS.custID=ORDERS.custID
+WHERE CUSTOMERS.country='France' and ORDERS.orderTotal>=1000.00;
